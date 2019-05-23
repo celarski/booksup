@@ -1,0 +1,22 @@
+{% extends "layout_main.html" %}
+
+{% block body %}
+  <div class="search-keyword">
+    <h1>Results:</h1>
+  </div>
+
+  <div class="information-container">
+    <ul>
+      {% for result in results_list %}
+        <li>
+          <img src="http://covers.librarything.com/devkey/89b0d45c76e16a28d776b5c37f2ab956/small/isbn/{{ result.isbn }}">
+          <a href="{{ url_for('book_page', id_num=result.id) }}">
+            <span class="book-title">{{ result.title }}</span>,  <span class="book-author">{{ result.author }}</span>   <span class="year-isbn">year: {{ result.year }}, isbn: {{ result.isbn  }}</span>
+          </a>
+        </li>
+      {% else %}
+          <li>No results found.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

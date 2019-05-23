@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Books'up</title>
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles_main.css') }}">
+  </head>
+  <body>
+    <div>
+      <nav class="navbar navbar-light" style="background-color: #3b444b;">
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+          <div class="app-title">
+            <h4>Books'<span class="up">up</span></h4>
+          </div>
+        </a>
+        <form action="{{ url_for('logout') }}" method="post">
+          <button class="btn btn-outline-light my-2 btn-sm" type="submit">Log out</button>
+        </form>
+      </nav>
+      </div>
+    {% block body %}{% endblock %}
+  </body>
+</html>

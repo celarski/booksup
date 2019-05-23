@@ -1,0 +1,97 @@
+{% extends "layout_main.html" %}
+
+{% block body %}
+
+  <div class="book-showcases">
+    <div class="book-cover column">
+      <img src="{{ cover_url }}" class="big-cover">
+    </div>
+    <div class="book-data column">
+      <p>
+        <span class="book-title-main">{{ book_data.title }}</span>
+      <br>
+        <span class="book-author-main">by {{ book_data.author }}</span>
+      <br>
+        <span class="year-isbn-main">year: {{ book_data.year }}, isbn: {{ book_data.isbn }}
+      <br>
+
+        <span class="year-isbn-main">Average Goodreads Rating:
+        {% for key, value in res.items() %}
+        <span class="book-title">{{ value[0]["average_rating"] }}</span>
+        {% endfor %}
+        from
+        {% for key, value in res.items() %}
+        <span class="book-title">{{ value[0]["work_ratings_count"] }}</span>
+        {% endfor %}
+        ratings.
+        </span>
+        
+      </p>
+    </div>
+  </div>
+
+
+  {% if review_submitted is sameas true %}
+    <div class="rating" style="padding: 10px;">
+      You've already submitted a review.
+    </div>
+  {% else %}
+    <div class="rating">
+      <form action="{{ url_for('book_page', id_num=book_data.id) }}" method="post">
+
+        <div class="score">
+          Rate the book:
+          <div class="form-check form-check-inline first-form-check">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5">
+            <label class="form-check-label" for="inlineRadio5">5</label>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Add review:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="reviewSubmit" rows="3"></textarea>
+          <button class="btn btn-primary submit-button" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+  {% endif %}
+
+
+  {% if reviews|length != 0 %}
+  <div>
+    <ul class="ul-reset">
+      {% for single_review in reviews %}
+        <li class="rating">
+          <div>
+          <span class="book-title">{{ single_review.username }}</span> rated the book <span class="book-title">{{ single_review.user_rating }}/5 </span> <br>
+          <hr class="divider">
+          {{ single_review.review }}
+          </div>
+        </li>
+      {% endfor%}
+    </ul>
+  </div>
+  {% else %}
+    <div class="rating" style="padding: 10px;">No reviews yet.</div>
+  {% endif %}
+
+{% endblock %}

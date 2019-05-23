@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block form %}
+  <form action="{{ url_for('check_user') }}" method="post">
+    <div class="login">
+      <div class="login-screen">
+        <div class="app-title">
+          <h1>Books'<span class="up">up</span></h1>
+        </div>
+        {% if message %}
+        <div class="warning">
+          Wrong username or password!
+        </div>
+        {% endif %}
+        <div class="login-form">
+          <div class="control-group">
+            <input type="text" class="login-field" value="" placeholder="Username/Email" name="login-info">
+            <label class="login-field-icon fui-user" for="login-name"></label>
+          </div>
+          <div class="control-group">
+            <input type="password" class="login-field" value="" placeholder="Password" name="password">
+            <label class="login-field-icon fui-lock" for="login-pass"></label>
+          </div>
+            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
+        </div>
+        <div class="bottom-text">
+          <p>Don't have an account yet?<br>Clic <a href="{{ url_for('signup') }}">here</a> to create one!</p>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

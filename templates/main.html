@@ -1,0 +1,62 @@
+{% extends "layout_main.html" %}
+
+{% block body %}
+  <div class="form-background">
+    <div class="greet-form">
+      <div class="welcome-message">
+        <h4>Welcome to Books'up!</h4>
+      </div>
+      <div>
+        <form action="{{ url_for('results') }}" method="post">
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputState">Criteria</label>
+              <select id="inputState" class="form-control" name="book-query">
+                <option vlaue ="All" selected>All</option>
+                <option value="Title">Title</option>
+                <option value="Author">Author</option>
+                <option value="ISBN">ISBN</option>
+              </select>
+            </div>
+            <div class="form-group col-md-7">
+              <label for="inputCity">Book info</label>
+              <input type="text" class="form-control" id="inputCity" name="book-info">
+            </div>
+            <div class="search-button form-group col-md-2">
+              <button type="submit" class="btn btn-blue btn-block">Search!</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="cointainer">
+    <div class="item">
+      <img src="/static/magnifier.png" height="100px">
+      <div class="caption">
+        <p>Search</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="/static/star.png" height="100px" style="padding: 20px;">
+      <div class="caption">
+        <p>Rate</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="/static/review.png" height="100px" style="padding: 20px;">
+      <div class="caption">
+        <p>Review</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="/static/book.png" height="100px" style="padding: 20px;>
+      <div class="caption">
+        <p>Enjoy!</p>
+      </div>
+    </div>
+  </div>
+-->
+{% endblock %}
